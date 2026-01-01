@@ -109,24 +109,33 @@
     }
   }
 
-  /* DESKTOP (≥ 992px) - Show search horizontally */
-  @media (min-width: 992px) {
-    .nav-back-color {
-      background-color: #fff;
-      border-radius: 1rem;
-      padding: 0.5rem 1rem;
-    }
-    
-    .search-input {
-      padding: 0.5rem 1.5rem;
-      min-width: 250px;
-    }
-    
-    .d-lg-flex {
-      gap: 1rem;
-    }
+  /* DESKTOP (≥ 992px) - Enhanced & Centered Search */
+/* DESKTOP (≥ 992px) - Enhanced Search with Space */
+@media (min-width: 992px) {
+  .search-input {
+    width: 450px !important; 
+    height: 3.2rem;
+    padding: 0.5rem 1.5rem;
+    border: 1px solid #ddd;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.08), 0 4px 12px rgba(0,0,0,0.05);
+    border-radius: 30px !important;
   }
 
+  /* Added gap for desktop flex form */
+  .desktop-search-form {
+    display: flex;
+    align-items: center;
+    gap: 12px; /* This creates the little bit of space you want */
+  }
+
+  .search-btn {
+    height: 3.2rem;
+    padding: 0 1.5rem;
+    border-radius: 30px !important;
+    white-space: nowrap;
+    /* Removed negative margin to allow for the space */
+  }
+}
   /* Navbar brand styling */
   .navbar-brand {
     font-size: 1.5rem;
@@ -209,38 +218,31 @@
         <a class="nav-link d-none d-md-block" href="/listings">Explore</a>
       </div>
 
-      <div class="d-lg-flex ms-auto align-items-center">
-        <!-- Desktop Search Form (visible only on large screens) -->
-        <form
-          class="d-none d-lg-flex mb-0 me-lg-3"
-          role="search"
-          
-        >
+      <div class="collapse navbar-collapse nav-back-color" id="navbarNavAltMarkup">
+       
+      
+        <form class="d-none d-lg-flex mb-0 ms-auto me-auto desktop-search-form" role="search">
           <input
-            class="form-control me-2 search-input"
+            class="form-control search-input"
             type="search"
             name="q"
             placeholder="Search destinations"
             aria-label="Search"
           />
           <button class="btn search-btn" type="submit">
-            <i class="fa-solid fa-magnifying-glass"></i>Search
+            <i class="fa-solid fa-magnifying-glass"></i> Search
           </button>
         </form>
-
-        <div class="navbar-nav">
-          <!-- "Airbnb your home" visible on all screen sizes -->
-          <a
-            class="nav-link"
-            href="/listings/new"
-          >Airbnb your home</a>
+      
+        <div class="navbar-nav ms-auto align-items-center">
+          <a class="nav-link" href="/listings/new"><i class="fa-regular fa-plus"></i>Airbnb your home</a>
           
           <% if(!currUser) { %>
-          <a class="nav-link" href="/signup"><b>Signup</b></a>
-          <a class="nav-link" href="/login"><b>Log in</b></a>
+            <a class="nav-link" href="/signup"><b>Signup</b></a>
+            <a class="nav-link" href="/login"><b>Log in</b></a>
           <% } %>
           <% if(currUser) { %>
-          <a class="nav-link" href="/logout"><b>Log out</b></a>
+            <a class="nav-link" href="/logout"><b>Log out</b></a>
           <% } %>
         </div>
       </div>
